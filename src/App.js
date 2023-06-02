@@ -17,7 +17,7 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [showAll, setShowAll] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -46,15 +46,14 @@ const App = () => {
     setShowAll(event.target.value)
   }
 
-  const personsToShow = showAll
+  const personsToShow = (showAll==='')
   ? persons
-  : persons.filter(person => person.name === showAll)
+  : persons.filter(person => person.name.toLowerCase() === showAll.toLowerCase())
 
   return (
     <div>
       <h2>Phonebook</h2>
       filter shown with<input value={showAll} onChange={handleFilterChange}/><br />
-      {console.log({showAll})}
       <h2>add a new</h2>
       <form onSubmit={addPerson}>
         <div>
